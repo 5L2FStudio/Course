@@ -1,0 +1,58 @@
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Data.SqlClient;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace WindowsFormsApp1
+{
+    public partial class Form1 : Form
+    {
+        public Form1()
+        {
+            InitializeComponent();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            SqlConnection cnn = new SqlConnection();
+
+            cnn.ConnectionString = @"Persist Security Info=False;User ID=sa;Initial Catalog=DEMO;Data Source=(local);Password='123'";
+            try
+            {
+                cnn.Open();
+                //有問題的寫法
+                //string sql = "select * from Users where Name='" + editName.Text + "' and Password = '" + editPassword.Text + "'";
+                //MessageBox.Show(sql);
+
+
+                string sql = "select * from Users where Name=@Name and Password = @Password";
+                //MessageBox.Show(sql);
+
+                SqlCommand cmd = new SqlCommand(sql, cnn);
+
+                cmd.Parameters.Add("@Name", SqlDbType.NVarChar);
+                cmd.Parameters["@Name"].Value = editName.Text;
+                cmd.Parameters.Add("@Password", SqlDbType.NVarChar);
+                cmd.Parameters["@Password"].Value = editPassword.Text;
+
+                SqlDataReader sdr = cmd.ExecuteReader();
+
+                while (sdr.Read())
+                {
+                    string data = sdr["Name"] + " " + sdr["Password"];
+                    MessageBox.Show(data);
+                }
+            }
+            finally
+            {
+                cnn.Close();
+            }
+        }
+    }
+}
