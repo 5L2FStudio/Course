@@ -3,7 +3,7 @@ GO
 ALTER DATABASE [MemDemo] ADD FILEGROUP [Memory] CONTAINS MEMORY_OPTIMIZED_DATA 
 GO
 ALTER DATABASE [MemDemo] ADD FILE 
-	( NAME = N'MemDemo_Mem', FILENAME = N'C:\Program Files\Microsoft SQL Server\MSSQL14.SQL2017\MSSQL\DATA\MemDemo_Mem' ) 
+	( NAME = N'MemDemo_Mem', FILENAME = N'C:\Program Files\Microsoft SQL Server\MSSQL15.MSSQLSERVER\MSSQL\DATA\MemDemo_Mem' ) 
 	TO FILEGROUP [Memory]
 GO
 
