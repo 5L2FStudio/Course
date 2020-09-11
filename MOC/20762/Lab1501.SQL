@@ -3,6 +3,7 @@ FROM sys.spatial_reference_systems;
 GO
 
 -- 計算兩點之間距離
+-- 4326代表GCS-WGS-1984坐標系
 DECLARE @g1 geometry; 
 DECLARE @g2 geometry; 
 SET @g1 = geometry::STGeomFromText('POINT(-88.0 44.5)', 4326); 
