@@ -1,4 +1,4 @@
-SE [Source]
+USE [Source]
 GO
 
 SET NOCOUNT ON
